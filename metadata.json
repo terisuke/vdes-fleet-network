@@ -1,0 +1,5 @@
+{
+  "name": "VDES Fleet Network",
+  "description": "A fishery fleet network system simulation visualizing VDES communication data, ship trajectory, and sonar information across different depth layers.",
+  "requestFramePermissions": []
+}
