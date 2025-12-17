@@ -46,15 +46,20 @@ const generateFish = (state: SimState): FishObject[] => {
     let dp = 0;
     let dw = 0;
 
+    let lw = 0;
+
     if (state.lastSchoolType === 'school') {
        dp = Math.floor(Math.random() * 40) + 10; 
-       dw = Math.floor(Math.random() * 20) + 15; 
+       dw = Math.floor(Math.random() * 20) + 15;
+       lw = Math.floor(Math.random() * 40) + 40; // 40-80% width for schools
     } else if (state.lastSchoolType === 'medium') {
        dp = Math.floor(Math.random() * 30) + 40; 
-       dw = Math.floor(Math.random() * 10) + 5;  
+       dw = Math.floor(Math.random() * 10) + 5;
+       lw = Math.floor(Math.random() * 30) + 30; // 30-60% width for medium
     } else {
        dp = Math.floor(Math.random() * 20) + 50; 
-       dw = Math.floor(Math.random() * 3) + 2;   
+       dw = Math.floor(Math.random() * 3) + 2;
+       lw = Math.floor(Math.random() * 15) + 10; // 10-25% width for large (single fish)
     }
 
     if (dp + dw > state.currentSeabedDepth) {
@@ -64,6 +69,7 @@ const generateFish = (state: SimState): FishObject[] => {
     objects.push({
       dp,
       dw,
+      lw,
       type: state.lastSchoolType
     });
   }

@@ -22,6 +22,17 @@ export interface TelemetryData {
   f: FishObject[];
   /** Seabed Depth % (0-100) */
   sb: number;
+  /**
+   * Source MMSI (発信元のMMSI)
+   * 
+   * VDESからのNMEAセンテンス（EDM形式）から読み取り予定:
+   * $--EDM,<seq_nr>,<source_mmsi>,<dest_mmsi>,<data>,<fill_bits>*<HH><CR>
+   * 
+   * 現在はShipEntityのmmsiで管理しているが、
+   * 将来的に別のNMEAセンテンスを使用する場合は
+   * このフィールドを追加してソースを明示的に含める可能性あり
+   */
+  // srcMmsi?: string;
 }
 
 export interface ShipEntity {

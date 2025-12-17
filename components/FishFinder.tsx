@@ -82,6 +82,14 @@ export const FishFinder: React.FC<FishFinderProps> = ({ data, historyData, shipN
                       blurClass = 'blur-[0px] opacity-100';
                   }
 
+                  // Calculate horizontal position based on lw (default to full width if not set)
+                  const fishWidth = fish.lw ?? 90;
+                  // Calculate starting position based on fish index for consistent positioning
+                  const maxLeft = 100 - fishWidth - 5; // Leave 5% margin on right
+                  // Use deterministic offset based on fish index and depth to avoid flickering
+                  const offsetRatio = ((fIdx * 37 + Math.floor(fish.dp)) % 100) / 100;
+                  const fishLeft = 5 + offsetRatio * Math.max(0, maxLeft - 5);
+
                   return (
                     <div
                       key={fIdx}
@@ -89,8 +97,8 @@ export const FishFinder: React.FC<FishFinderProps> = ({ data, historyData, shipN
                       style={{
                         top: `${fish.dp}%`,
                         height: `${fish.dw}%`,
-                        left: '5%',
-                        width: '90%',
+                        left: `${fishLeft}%`,
+                        width: `${fishWidth}%`,
                       }}
                     />
                   );
